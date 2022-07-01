@@ -5,6 +5,8 @@ using namespace std;
 queue<int> otherPartsToReinitialise;
 int PairsDone[33000];
 bitset<33000>bs;
+
+//O(nlog(log(n)))
 void sieve()  {
 	bs.set();
 	bs[0]=0;
@@ -18,7 +20,7 @@ void sieve()  {
 
 	}
 }
-
+//O(n)
 int solve(int input){
 	int counter=0;
 	int theOtherPart=0;
@@ -30,6 +32,7 @@ int solve(int input){
 					counter++;
 					PairsDone[theOtherPart]=1;
 					PairsDone[i]=1;
+					// we pushed just to know what we pushed.
 					otherPartsToReinitialise.push(theOtherPart);
 					otherPartsToReinitialise.push(i);
 				}
