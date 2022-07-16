@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<vector<int>> matrixBlockSum(vector<vector<int>>& mat, int k) {
+        int h=mat.size();
+        int w=mat[0].size();
+        
+        vector<vector<int>> prefix(h,vector<int>(w));
+        vector<vector<int>> answer(h,vector<int>(w));
+        
+        for(int row=0;row<h;row++){
+            for(int col=0;col<w;col++){
+                if(row-1>=0){
+                    prefix[row][col]=mat[row][col]+prefix[row-1][col];
+                }else{
+                    prefix[row][col]=mat[row][col];
+                }
+                
+            }
+        }
+         for(int row=0;row<h;row++){
+            for(int col=0;col<w;col++){
+                if(col-1>=0){
+                    prefix[row][col]=prefix[row][col]+prefix[row][col-1];
+                }    
+            }
+        }
+        
+        for(int row=0;row<h;row++){
+            for(int col=0;col<w;col++){
+                int r1=max(0,row-k);
+                int r2=min(h-1,row+k);
+                int col1=max(0,col-k);
+                int col2=min(w-1,col+k);
+                answer[row][col]=prefix[r2][col2]-(r1?prefix[r1-1][col2]:0)-(col1?prefix[r2][col1-1]:0)+(r1&&col1?prefix[r1-1][col1-1]:0);
+            }
+        }
+       return answer; 
+    }
+};
