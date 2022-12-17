@@ -18,7 +18,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define fastInp cin.tie(0); cout.tie(0); ios_base::sync_with_stdio(0);
-
+// prob link : https://cses.fi/problemset/task/1667/
 typedef long long ll;
 typedef long double ld;
 ll n,m,k,t,g,l,r,a,b,d,p;
